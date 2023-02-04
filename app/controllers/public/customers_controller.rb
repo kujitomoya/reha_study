@@ -1,5 +1,5 @@
 class Public::CustomersController < ApplicationController
-  def show
+  def my_page
   end
 
   def edit

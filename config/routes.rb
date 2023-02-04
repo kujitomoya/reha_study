@@ -14,28 +14,23 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   scope module: :public do
     root to:"homes#top"
+    resources :impressions, only:[:index, :new, :create, :show, :edit, :update, :destroy]
+    resources :comments, only:[:create, :destroy]
+    resources :favorites, only:[:create, :destroy]
+    resources :customers do
+      collection do
+        get 'my_page'
+        get 'information/edit', action: :edit
+        patch 'information',action: :update
+        get 'unsubscribe'
+        patch 'withdraw'
+      end
+    end
   end
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-  end
-  namespace :admin do
-    get 'impressions/index'
-    get 'impressions/show'
-  end
-  namespace :admin do
-    get 'fields/index'
-    get 'fields/edit'
-  end
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-  end
-  namespace :public do
-    get 'impressions/index'
-    get 'impressions/new'
-    get 'impressions/show'
-    get 'impressions/edit'
-  end
+
+ namespace :admin do
+    resources :customers, only:[:index, :show, :edit, :update, :destroy]
+    resources :impressions, only:[:index, :show, :destroy]
+    resources :fields, only:[:index, :create, :update, :destroy]
+ end
 end

@@ -19,7 +19,7 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-         
+
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if customer_signed_in? %>
@@ -27,14 +27,19 @@
               <li class="nav-item">
                 <%= link_to root_path , class: 'nav-link text-dark' do %>
                 <span><i class="fa-solid fa-cake-candles"></i>TOP</span>
-                <% end %>   
+                <% end %>
               <li class="nav-item">
-                <%= link_to public_customers_show_path , class: 'nav-link text-dark' do %>
+                <%= link_to my_page_customers_path , class: 'nav-link text-dark' do %>
                 <span><i class="fa-solid fa-cake-candles"></i>マイページ</span>
-                <% end %>         
+                <% end %>
               <li class="nav-item">
-                <%= link_to public_impressions_index_path ,class: 'nav-link text-dark' do %>
+                <%= link_to impressions_path ,class: 'nav-link text-dark' do %>
                 <span><i class="fas fa-users"></i>投稿一覧</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_impression_path ,class: 'nav-link text-dark' do %>
+                <span><i class="fas fa-users"></i>新規投稿</span>
                 <% end %>
               </li>
               <li class="nav-item">
@@ -44,26 +49,26 @@
               <% end %>
               <% elsif admin_signed_in? %>
               <li class="nav-item">
-                <%= link_to admin_impressions_index_path , class: 'nav-link text-dark' do %>
+                <%= link_to admin_impressions_path , class: 'nav-link text-dark' do %>
                 <span><i class="fa-solid fa-cake-candles"></i>投稿一覧</span>
-                <% end %>              
+                <% end %>
                 </li>
                  <li class="nav-item">
-                <%= link_to admin_customers_index_path ,class: 'nav-link text-dark' do %>
+                <%= link_to admin_customers_path ,class: 'nav-link text-dark' do %>
                 <span><i class="fas fa-users"></i>会員一覧</span>
                 <% end %>
               </li>
               <li class="nav-item">
-               <%= link_to admin_fields_index_path,class: 'nav-link text-dark' do %>
+               <%= link_to admin_fields_path,class: 'nav-link text-dark' do %>
                <span><i class="fa-solid fa-g"></i>分野一覧</span>
               </li>
               <% end %>
-              
+
               <li class="nav-item">
                <%= link_to destroy_admin_session_path,class: 'nav-link text-dark' ,method: :delete do %>
                <span><i class="fas fa-sign-out-alt"></i>ログアウト</span>
               <% end %>
-              </li>             
+              </li>
             <% else %>
               <li class="nav-item">
                 <%= link_to new_customer_registration_path,class: 'nav-link text-dark' do  %>
@@ -77,7 +82,7 @@
               </li>
                 <% end %>
             </ul>
-        </div>      
+        </div>
       </div>
     </nav>
    </header>

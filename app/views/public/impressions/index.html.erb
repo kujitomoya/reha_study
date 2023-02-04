@@ -1,5 +1,13 @@
 <h1>勉強会感想一覧</h1>
 
-<%= link_to public_impressions_new_path do %>
+<%= link_to new_impression_path do %>
  <span>新規投稿</span>
-<% end %> 
+<% end %>
+
+<% @impressions.each do |impression| %>
+<div>
+  <p>講師名：<%= impression.name %></p>
+  <p>勉強会名：<%= impression.title %></p>
+  <p>感想：<%= impression.text %></p>
+</div>
+<% end %>
