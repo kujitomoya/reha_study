@@ -1,9 +1,11 @@
 <h1>勉強会参加感想の新規投稿</h1>
   <%= form_with model: @impression do |f| %>
-    <h4>講師名</h4>
-      <%= f.text_field :name %>
     <h4>勉強会名</h4>
       <%= f.text_field :impression_title %>
+    
+    <h4>講師名</h4>
+      <%= f.text_field :name %>
+
     <h4>感想</h4>
       <%= f.text_area :impression_text %>
     <%= f.submit '投稿' %>

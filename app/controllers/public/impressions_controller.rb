@@ -8,19 +8,31 @@ class Public::ImpressionsController < ApplicationController
   end
   
   def create
-    @impression = Impresion.new(impression_params)
+    @impression = Impression.new(impression_params)
     @impression.customer_id = current_customer.id
+    #binding.pry
     @impression.save
-    redirect_to impression_path
+    redirect_to impressions_path
   end
 
   def show
+    @impression = Impression.find(params[:id])  
   end
 
   def edit
+    @impression = Impression.find(params[:id])
   end
   
   def update
+    impression = Impression.find(params[:id])
+    impression.update(impression_params)
+    redirect_to impression_path(impression.id)  
+  end
+  
+  def destroy
+    impression = Impression.find(params[:id])  # データ（レコード）を1件取得
+    impression.destroy  # データ（レコード）を削除
+    redirect_to impressions_path  # 投稿一覧画面へリダイレクト  
   end
   
    # 投稿データのストロングパラメータ

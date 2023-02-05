@@ -29,8 +29,8 @@
                 <span><i class="fa-solid fa-cake-candles"></i>TOP</span>
                 <% end %>
               <li class="nav-item">
-                <%= link_to my_page_customers_path , class: 'nav-link text-dark' do %>
-                <span><i class="fa-solid fa-cake-candles"></i>マイページ</span>
+                <%= link_to customer_path(current_customer.id) , class: 'nav-link text-dark' do %>
+                <span><i class="fa-solid fa-cake-candles"></i>ユーザー</span>
                 <% end %>
               <li class="nav-item">
                 <%= link_to impressions_path ,class: 'nav-link text-dark' do %>

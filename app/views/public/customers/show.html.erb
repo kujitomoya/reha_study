@@ -1,0 +1,27 @@
+<h1>ユーザー情報</h1>
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+   <div class="col-md-8 offset-md-1">
+    <h2>ユーザー投稿</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th>勉強会名</th>
+            <th>講師名</th>
+            <th>感想</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @impressions.each do |impression| %>
+            <tr>
+              <td><%= impression.impression_title %>
+              <td><%= impression.name %></td>
+              <td><%= impression.impression_text %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    </div>
+</div>

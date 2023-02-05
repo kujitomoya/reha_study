@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2023_02_02_144649) do
 
   create_table "impressions", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.integer "fields_id", null: false
+    t.integer "fields_id"
     t.string "name", null: false
     t.string "impression_title", null: false
     t.text "impression_text", null: false

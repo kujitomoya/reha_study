@@ -17,16 +17,12 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     resources :impressions, only:[:index, :new, :create, :show, :edit, :update, :destroy]
     resources :comments, only:[:create, :destroy]
     resources :favorites, only:[:create, :destroy]
-    resources :customers do
-      collection do
-        get 'my_page'
-        get 'information/edit', action: :edit
-        patch 'information',action: :update
-        get 'unsubscribe'
-        patch 'withdraw'
-      end
+    resources :customers, only:[:show, :edit, :update]
+      # 退会確認画面
+      get '/customers/:id/unsubscribe' => 'customerss#unsubscribe', as: 'unsubscribe'
+      # 論理削除用のルーティング
+      patch '/customers/:id/withdrawal' => 'customerss#withdrawal', as: 'withdrawal'
     end
-  end
 
  namespace :admin do
     resources :customers, only:[:index, :show, :edit, :update, :destroy]
