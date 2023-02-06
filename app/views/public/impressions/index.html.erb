@@ -13,7 +13,7 @@
               <% @impressions.each do |impression| %>
                 <tr>
                   <td><%= link_to impression_path(impression.id) do %>
-                      <%= impression.impression_title %>
+                      <%= impression.impression_title %></td>
                       <% end %>
                   <td><%= impression.name %></td>
                   <td><%= impression.impression_text %></td>

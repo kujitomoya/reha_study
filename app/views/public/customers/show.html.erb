@@ -1,4 +1,4 @@
-<h1>ユーザー情報</h1>
+<h1><%= @customer.name %></h1>
 
 <div class="container px-5 px-sm-0">
   <div class="row">
@@ -15,11 +15,19 @@
         <tbody>
           <% @impressions.each do |impression| %>
             <tr>
+              <td><%= link_to impression_path(impression.id) do %>
+                    <%= impression.impression_title %></td>
+                  <% end %>
               <td><%= impression.impression_title %>
               <td><%= impression.name %></td>
               <td><%= impression.impression_text %></td>
+            <% if @customer == current_customer %>
+              <td><%= link_to "更新", edit_impression_path(@customer.id),class: "btn btn-success" %></td>
+              <td><%= link_to "削除", impression_path(@customer.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %></td>
+            <% end %>
             </tr>
           <% end %>
+          
         </tbody>
       </table>
     </div>
