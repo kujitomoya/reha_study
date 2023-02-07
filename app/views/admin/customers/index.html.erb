@@ -3,8 +3,9 @@
 <table class="table table-hover table-inverse">
             <thead>
               <tr>
-                <th>名前</th>
-                <th>メールアドレス</th>
+                <th><b>名前</b></th>
+                <th><b>メールアドレス</b></th>
+                <th><b>ステータス</b></th>
               </tr>
             </thead>
             <tbody>
@@ -14,6 +15,12 @@
                       <%= customer.name %></td>
                       <% end %>
                   <td><%= customer.email %></td>
+                  <td><% if customer.is_deleted %>
+                        <span style="color:grey;">退会</span>
+                      <% else %>
+                        <span style="color:limegreen;">有効</span>
+                      <% end %>
+                  </td>
                 </tr>
               <% end %>
             </tbody>

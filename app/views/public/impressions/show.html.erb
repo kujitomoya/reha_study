@@ -18,10 +18,10 @@
                 <td><%= link_to customer_path(@impression.customer.id) do %>
                       <%= @impression.customer.name %></td>
                       <% end %>
-               <% if customer_signed_in? && current_customer.id == @impression.customer_id %>
+               <% if @impression.customer_id == current_customer.id %>
                 <td><%= link_to "更新", edit_impression_path(@impression.id),class: "btn btn-success" %></td>
                 <td><%= link_to "削除", impression_path(@impression.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %></td>
-               <% end %>
+               <% end %>   
                <% if admin_signed_in? %>
                 <td><%= link_to "削除", impression_path(@impression.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %></td>
                <% end %>

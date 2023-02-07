@@ -1,4 +1,6 @@
 class Public::ImpressionsController < ApplicationController
+  before_action :is_matching_login_customer, only: [:edit, :update, :destroy]
+  
   def index
     @impressions = Impression.all  
   end
@@ -30,15 +32,24 @@ class Public::ImpressionsController < ApplicationController
   end
   
   def destroy
-    impression = Impression.find(params[:id])  # データ（レコード）を1件取得
-    impression.destroy  # データ（レコード）を削除
-    redirect_to impressions_path  # 投稿一覧画面へリダイレクト  
+    impression = Impression.find(params[:id])
+    impression.destroy
+    redirect_to impressions_path
   end
-  
-   # 投稿データのストロングパラメータ
+
   private
 
   def impression_params
     params.require(:impression).permit(:name, :impression_title, :impression_text)
   end
+  
+  def is_matching_login_customer
+    @impressions = Impression.find(params[:id])
+    customer_id = @impressions.customer.id
+    login_customer_id = current_customer.id
+    if(customer_id != login_customer_id)
+      redirect_to impressions_path
+    end
+  end 
+  
 end

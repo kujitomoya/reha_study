@@ -5,7 +5,6 @@
               <tr>
                 <th>勉強会名</th>
                 <th>講師名</th>
-                <th>感想</th>
                 <th>投稿者名</th>
               </tr>
             </thead>
@@ -16,7 +15,6 @@
                       <%= impression.impression_title %></td>
                       <% end %>
                   <td><%= impression.name %></td>
-                  <td><%= impression.impression_text %></td>
                   <td><%= link_to customer_path(impression.customer.id) do %>
                       <%= impression.customer.name %></td>
                       <% end %>
