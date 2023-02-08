@@ -2,11 +2,14 @@
   <%= form_with model: @impression do |f| %>
     <h4>勉強会名</h4>
       <%= f.text_field :impression_title %>
-    
+
     <h4>講師名</h4>
       <%= f.text_field :name %>
 
     <h4>感想</h4>
       <%= f.text_area :impression_text %>
+
+    <h4>分野</h4>
+    <%= f.label :field_id, 'ジャンル' %><div><%= f.select :field_id, {'運動器':1,'スポーツ':2,'脳血管':3,'小児・発達':4,'地域・在宅':5,'呼吸器・循環器':6,'認知症':7,'その他':8}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %></div>
     <%= f.submit '投稿' %>
   <% end %>

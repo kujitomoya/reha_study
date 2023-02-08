@@ -2,7 +2,8 @@ class Public::ImpressionsController < ApplicationController
   before_action :is_matching_login_customer, only: [:edit, :update, :destroy]
   
   def index
-    @impressions = Impression.all  
+    @impressions = Impression.all
+    
   end
 
   def new

@@ -27,6 +27,6 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
  namespace :admin do
     resources :customers, only:[:index, :show, :edit, :update, :destroy]
     resources :impressions, only:[:index, :show, :destroy]
-    resources :fields, only:[:index, :create, :update, :destroy]
+    resources :fields, only:[:index, :create, :edit, :update, :destroy]
  end
 end

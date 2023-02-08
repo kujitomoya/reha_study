@@ -1,0 +1,22 @@
+<div class="container">
+  <h4><span style="background-color: silver;">分野一覧・追加</span></h4>
+
+  <%= form_with model: @field,url: admin_fields_path do |f| %>
+  <a>ジャンル名</a>
+    <%= f.text_field :field_name, placeholder:"分野" %>
+<%= f.submit '新規登録', class: "btn btn-success" %>
+<% end %>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-header">
+    分野
+  </div>
+  <% @fields.each do |field| %>
+  <div class="list-group list-group-flush">
+    <%= field.field_name %>
+    <%= link_to "編集する", edit_admin_field_path(field.id),class: "btn btn-success btn-sm" %>
+  </div>
+  <% end %>
+  
+</div>
+</div>
