@@ -12,5 +12,4 @@ class Admin::ImpressionsController < ApplicationController
     impression.destroy  # データ（レコード）を削除
     redirect_to impressions_path  # 投稿一覧画面へリダイレクト  
   end
-  
 end

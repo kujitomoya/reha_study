@@ -12,25 +12,31 @@
         <thead>
           <tr>
             <th>勉強会名</th>
-            <th>感想</th>
+            <th>分野</th>
+            <th>講師名</th>
           </tr>
         </thead>
         <tbody>
           <% @impressions.each do |impression| %>
             <tr>
-              <td><%= link_to impression_path(impression.id) do %>
-                    <%= impression.impression_title %></td>
-                  <% end %>
+              <td>
+                <%= link_to impression_path(impression.id) do %>
+                  <%= impression.title %></td>
+                <% end %>
+              <td><%= impression.field.name %></td>
               <td><%= impression.name %></td>
-            <% if @customer == current_customer %>
-              <td><%= link_to "更新", edit_impression_path(current_customer.id),class: "btn btn-success" %></td>
-              <td><%= link_to "削除", impression_path(@customer.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %></td>
-            <% end %>
+            　<% if @customer == current_customer %>
+              <td>
+                <%= link_to "更新", edit_impression_path(current_customer.id),class: "btn btn-success" %>
+              </td>
+              <td>
+                <%= link_to "削除", impression_path(@customer.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
+              </td>
+            　<% end %>
             </tr>
           <% end %>
-          
         </tbody>
       </table>
     </div>
-    </div>
+  </div>
 </div>

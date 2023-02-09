@@ -1,26 +1,30 @@
 <h1>勉強会感想一覧</h1>
 
 <table class="table table-hover table-inverse">
-            <thead>
-              <tr>
-                <th>勉強会名</th>
-                <th>講師名</th>
-                <th>感想</th>
-                <th>投稿者名</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @impressions.each do |impression| %>
-                <tr>
-                  <td><%= link_to impression_path(impression.id) do %>
-                      <%= impression.impression_title %></td>
-                      <% end %>
-                  <td><%= impression.name %></td>
-                  <td><%= impression.impression_text %></td>
-                  <td><%= link_to customer_path(impression.customer.id) do %>
-                      <%= impression.customer.name %></td>
-                      <% end %>
-                </tr>
-              <% end %>
-            </tbody>
+  <thead>
+    <tr>
+      <th>勉強会名</th>
+      <th>分野</th>
+      <th>講師名</th>
+      <th>投稿者名</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @impressions.each do |impression| %>
+      <tr>
+        <td>
+          <%= link_to impression_path(impression.id) do %>
+            <%= impression.title %>
+          <% end %>
+        </td>
+        <td><%= impression.field.name %></td>      
+        <td><%= impression.name %></td>
+        <td>
+          <%= link_to customer_path(impression.customer.id) do %>
+            <%= impression.customer.name %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>

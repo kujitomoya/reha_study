@@ -1,14 +1,15 @@
-
 <div class ="container">
-  <h3><span style="background-color: silver;">会員情報編集</span></h3>
+  <h3>
+    <span style="background-color: silver;">会員情報編集</span>
+  </h3>
    <%= form_with model: @customer, url: customer_path,method: :patch do |f| %><br>
-  
     <table border="0" cellpadding="11" cellspacing="0" width="60%">
-      <tr><th>氏名</th><td>
-        <%= f.text_field :name, autofocus: true, id:"inputName" %>
-      </td></tr>
+      <tr>
+        <th>氏名</th>
+        <td><%= f.text_field :name, autofocus: true, id:"inputName" %></td>
+      </tr>
     </table>
      <%= f.submit "編集内容を保存", class: "btn btn-success" %>
-        <%= link_to "退会する",  unsubscribe_path,class: "btn btn-danger" %>
-  <% end %>
+      <%= link_to "退会する",  unsubscribe_path,class: "btn btn-danger" %>
+     <% end %>
 </div>

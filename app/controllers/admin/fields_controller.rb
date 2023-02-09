@@ -27,6 +27,6 @@ class Admin::FieldsController < ApplicationController
    private
    
   def field_params 
-    params.require(:field).permit(:field_name)
+    params.require(:field).permit(:name)
   end
 end
