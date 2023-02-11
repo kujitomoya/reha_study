@@ -12,25 +12,19 @@ class Public::CustomersController < ApplicationController
 
   def update
     @customer = Customer.find(params[:id])
-    @customer.update(customer_params)
-    redirect_to customer_path(@customer.id)
-  end
-  
-  def update
-    @customer = Customer.find(params[:id])
      if @customer.update(customer_params)
        flash[:notice] = "You have updated user successfully."
        redirect_to customer_path(@customer.id)
      else
        render :edit
      end
-   end
+  end
 
   def unsubscribe
-     @customer = Customer.find_by(email: params[:name])
+     @customer = Customer.find(params[:id])
   end
-  
-  def withdraw
+
+  def withdrawal
     @customer = current_customer
     @customer.update(is_deleted: true)
     sign_out current_customer
@@ -40,9 +34,9 @@ class Public::CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:name, :email)
+    params.require(:customer).permit(:name)
   end
-  
+
   def is_matching_login_customer
     customer_id = params[:id].to_i
     login_customer_id = current_customer.id

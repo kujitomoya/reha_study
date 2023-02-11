@@ -33,7 +33,7 @@
           <% end %>
           <% if admin_signed_in? %>
           <td>
-            <%= link_to "削除", impression_path(@impression.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
+            <%= link_to "削除", admin_impression_path(@impression.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
           </td>
           <% end %>
         </tr>

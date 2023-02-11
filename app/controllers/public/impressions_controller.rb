@@ -16,7 +16,7 @@ class Public::ImpressionsController < ApplicationController
       flash[:notice] = "投稿に成功しました！"
       redirect_to impressions_path
     else
-      render :new_impression
+      render :new
     end
   end
 
@@ -34,7 +34,7 @@ class Public::ImpressionsController < ApplicationController
       flash[:notice] = "編集に成功しました！"
       redirect_to impression_path(@impression)
     else
-      render :edit_impression
+      render :edit
     end
   end   
     

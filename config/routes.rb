@@ -19,9 +19,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     resources :favorites, only:[:create, :destroy]
     resources :customers, only:[:show, :edit, :update]
       # 退会確認画面
-      get '/customers/:id/unsubscribe' => 'customerss#unsubscribe', as: 'unsubscribe'
+      get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
       # 論理削除用のルーティング
-      patch '/customers/:id/withdrawal' => 'customerss#withdrawal', as: 'withdrawal'
+      patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
     end
 
  namespace :admin do

@@ -25,14 +25,6 @@
                 <% end %>
               <td><%= impression.field.name %></td>
               <td><%= impression.name %></td>
-            　<% if @customer == current_customer %>
-              <td>
-                <%= link_to "更新", edit_impression_path(current_customer.id),class: "btn btn-success" %>
-              </td>
-              <td>
-                <%= link_to "削除", impression_path(@customer.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
-              </td>
-            　<% end %>
             </tr>
           <% end %>
         </tbody>
