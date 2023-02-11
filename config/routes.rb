@@ -15,9 +15,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   scope module: :public do
     root to:"homes#top"
     resources :impressions, only:[:index, :new, :create, :show, :edit, :update, :destroy] do
+     resource :favorites, only:[:create, :destroy]
      resources :comments, only:[:create, :destroy]
     end
-    resources :favorites, only:[:create, :destroy]
     resources :customers, only:[:show, :edit, :update]
       # 退会確認画面
       get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'

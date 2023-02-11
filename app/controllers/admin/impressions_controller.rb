@@ -1,6 +1,6 @@
 class Admin::ImpressionsController < ApplicationController
   def index
-    @impressions = Impression.all
+    @impressions = Impression.all.page(params[:page]).per(10)
   end
 
   def show

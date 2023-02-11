@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>勉強会名</th>
-      <th>分野</th>      
+      <th>分野</th>
       <th>講師名</th>
       <th>投稿者名</th>
       <th>コメント数</th>
@@ -20,7 +20,7 @@
             <%= impression.title %>
           <% end %>
         </td>
-        <td><%= impression.field.name %></td>       
+        <td><%= impression.field.name %></td>
         <td><%= impression.name %></td>
         <td>
           <%= link_to customer_path(impression.customer.id) do %>
@@ -32,3 +32,4 @@
     <% end %>
   </tbody>
 </table>
+<%= paginate @impressions %>

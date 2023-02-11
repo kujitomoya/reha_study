@@ -1,4 +1,4 @@
 class Favorite < ApplicationRecord
-  #belongs_to :customer
-  #belongs_to :impression
+  belongs_to :customer
+  belongs_to :impression
 end

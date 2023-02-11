@@ -7,6 +7,7 @@
       <th>分野</th>
       <th>講師名</th>
       <th>投稿者名</th>
+      <th>コメント数</th>
     </tr>
   </thead>
   <tbody>
@@ -17,14 +18,16 @@
             <%= impression.title %>
           <% end %>
         </td>
-        <td><%= impression.field.name %></td>      
+        <td><%= impression.field.name %></td>
         <td><%= impression.name %></td>
         <td>
           <%= link_to customer_path(impression.customer.id) do %>
             <%= impression.customer.name %>
           <% end %>
         </td>
+        <td><%= link_to "#{impression.comments.count} コメント", impression_path(impression.id) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= paginate @impressions %>

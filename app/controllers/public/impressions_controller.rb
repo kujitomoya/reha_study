@@ -2,7 +2,7 @@ class Public::ImpressionsController < ApplicationController
   before_action :is_matching_login_customer, only: [:edit, :update, :destroy]
 
   def index
-    @impressions = Impression.all
+    @impressions = Impression.all.page(params[:page]).per(10)
   end
 
   def new
@@ -22,7 +22,7 @@ class Public::ImpressionsController < ApplicationController
 
   def show
     @impression = Impression.find(params[:id])
-    @comment = Comment.new    
+    @comment = Comment.new
   end
 
   def edit
@@ -37,8 +37,8 @@ class Public::ImpressionsController < ApplicationController
     else
       render :edit
     end
-  end   
-    
+  end
+
   def destroy
     impression = Impression.find(params[:id])
     impression.destroy
