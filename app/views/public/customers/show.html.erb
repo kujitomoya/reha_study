@@ -14,6 +14,7 @@
             <th>勉強会名</th>
             <th>分野</th>
             <th>講師名</th>
+            <th>コメント数</th>
           </tr>
         </thead>
         <tbody>
@@ -25,6 +26,7 @@
                 <% end %>
               <td><%= impression.field.name %></td>
               <td><%= impression.name %></td>
+              <td><%= link_to "#{impression.comments.count} コメント", impression_path(impression.id) %></td>
             </tr>
           <% end %>
         </tbody>

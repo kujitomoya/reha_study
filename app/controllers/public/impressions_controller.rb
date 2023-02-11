@@ -22,6 +22,7 @@ class Public::ImpressionsController < ApplicationController
 
   def show
     @impression = Impression.find(params[:id])
+    @comment = Comment.new    
   end
 
   def edit

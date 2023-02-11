@@ -14,8 +14,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   scope module: :public do
     root to:"homes#top"
-    resources :impressions, only:[:index, :new, :create, :show, :edit, :update, :destroy]
-    resources :comments, only:[:create, :destroy]
+    resources :impressions, only:[:index, :new, :create, :show, :edit, :update, :destroy] do
+     resources :comments, only:[:create, :destroy]
+    end
     resources :favorites, only:[:create, :destroy]
     resources :customers, only:[:show, :edit, :update]
       # 退会確認画面
@@ -26,7 +27,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
  namespace :admin do
     resources :customers, only:[:index, :show, :edit, :update, :destroy]
-    resources :impressions, only:[:index, :show, :destroy]
+    resources :impressions, only:[:index, :show, :destroy] do
+      resources :comments, only:[:destroy]
+    end
     resources :fields, only:[:index, :create, :edit, :update, :destroy]
  end
 end
