@@ -45,6 +45,22 @@ class Public::ImpressionsController < ApplicationController
     redirect_to impressions_path
   end
 
+  def search
+    search_word = params[:word].split(/[[:blank:]]+/)
+
+    if search_word.blank?
+      @impressions = Impression.all.page(params[:page]).per(10)
+    else
+      search_word.each_with_index do |keyword, index|
+        @impressions = Impression.search(keyword) if index == 0
+        @impressions = Impression.merge(@impressions.search(keyword), rewhere: true) if index != 0
+      end
+    end
+
+    @impressions = @impressions.page(params[:page]).per(10)
+    render :index
+  end
+
   private
 
   def impression_params

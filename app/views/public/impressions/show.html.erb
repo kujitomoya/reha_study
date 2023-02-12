@@ -40,6 +40,7 @@
       </tbody>
     </table>
   <div>
+    <% if customer_signed_in? %>
     <% if @impression.favorited_by?(current_customer) %>
       <p><%= link_to impression_favorites_path(@impression), method: :delete do %>
         ♥<%= @impression.favorites.count %> いいね
@@ -50,6 +51,9 @@
         ♡<%= @impression.favorites.count %> いいね
       <% end %>
       </p>
+    <% end %>
+    <% else %>
+      ♥<%= @impression.favorites.count %> いいね
     <% end %>
   <div>
    <p>コメント件数：<%= @impression.comments.count %></p>

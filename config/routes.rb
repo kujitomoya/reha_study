@@ -18,6 +18,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
      resource :favorites, only:[:create, :destroy]
      resources :comments, only:[:create, :destroy]
     end
+    get 'search', to: 'impressions#search', as: 'search'
     resources :customers, only:[:show, :edit, :update]
       # 退会確認画面
       get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
