@@ -14,6 +14,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
   scope module: :public do
     root to:"homes#top"
+    resources :contacts, only: [:new, :create]
     resources :impressions, only:[:index, :new, :create, :show, :edit, :update, :destroy] do
      resource :favorites, only:[:create, :destroy]
      resources :comments, only:[:create, :destroy]
