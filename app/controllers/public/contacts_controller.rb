@@ -6,7 +6,7 @@ class Public::ContactsController < ApplicationController
   def create
     @contact = Contact.new(contact_params)
     if @contact.save
-      ContactMailer.contact_mail(@contact, current_customer).deliver
+      ContactMailer.contact_mail(@contact, Admin.first).deliver
       flash[:notice] ='お問い合わせ内容を送信しました'
       redirect_to impressions_path
     else
