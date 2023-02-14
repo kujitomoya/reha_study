@@ -14,8 +14,8 @@ class Impression < ApplicationRecord
       .or(where("title LIKE ?", "%#{keyword}%"))
   end
 
-  validates :title, presence: true
-  validates :name, presence: true
-  validates :text, presence: true
+  validates :title, presence: true, length: { in: 1..30 }
+  validates :name, presence: true, length: { in: 1..20 }
+  validates :text, presence: true, length: { in: 1..100 }
   validates :field_id, presence: true
 end

@@ -61,3 +61,5 @@ gem 'devise'
 gem 'kaminari'
 
 gem 'dotenv-rails'
+
+gem 'rails-i18n'

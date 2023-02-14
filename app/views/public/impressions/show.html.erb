@@ -17,7 +17,7 @@
           <td><%= @impression.title %></td>
           <td><%= @impression.field.name %></td>
           <td><%= @impression.name %></td>
-          <td><%= @impression.text %></td>
+          <td><%=safe_join(@impression.text.split("\n"),tag(:br))%></td>
           <td>
             <%= link_to customer_path(@impression.customer.id) do %>
               <%= @impression.customer.name %>

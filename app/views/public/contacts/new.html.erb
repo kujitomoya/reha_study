@@ -1,44 +1,28 @@
-<%= form_with(model: @contact, local: true) do |f| %>
-    <%#= render "shared/second-header"%>
-        <div class="container mt-5">
-    <div class='form-wrap'>
-      <div class='form-header text-center'>
-        <h5 class='form-header-text'>
-          お問い合わせフォーム
-        </h5>
-      </div>
-    </div>
-    <div class="correct-msg-box">
-      <% if @contact.errors.any? %>
-        <div id="error_explanation">
-          <ul><% @contact.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-            <% end %>
-          </ul>
+<div class="container">
+  <h2 class="my-3 ml-3">
+    お問い合わせフォーム
+  </h2>
+  <div class="row">
+    <div class="col-sm-10 mx-auto">
+
+      <%= form_with model: @contact, url: {action: :confirm} do |f| %>
+
+        <div class="form-group">
+          <%= f.label :name, 'お名前' %><br>
+          <%= f.text_field :name, autofocus: true, placeholder:'テスト　ほげ太郎', class:'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, 'メールアドレス' %><br>
+          <%= f.text_field :email, placeholder:'test@hoge.com', class:'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :content, 'お問い合わせ内容' %><br>
+          <%= f.text_area :content, placeholder:'お問い合わせ内容は10文字以上でお願いします', class:'form-control' %>
+        </div>
+        <div class="d-flex justify-content-center mb-5">
+          <%= f.submit '確認画面へ進む', class:'btn btn-primary' %>
         </div>
       <% end %>
-      <div class="correct-msg-main">
-        <div class="contact-form">
-            <div class="correct-text-field mt-3">
-              <%= f.label "お名前" %><br>
-              <%= f.text_field :name, placeholder: "お名前", class: "input-form",size: 30 %>
-            </div>
-            <div class="correct-text-field mt-3">
-              <%= f.label "お問合せ内容" %><br>
-              <%= f.text_area :content, placeholder: "お問合せ内容を入力してください", class: "input-form", :size=>"50x8" %>
-            </div>
-            <div class="send-btn-contents">
-              <div class="register-btn1 mt-3">
-                <%= f.button type: "submit" do %> 
-                  送信 <i class="fas fa-paper-plane"></i>
-                <% end %>
-              </div>
-              <div class="register-btn mt-4">
-                <%= link_to "もどる", root_path, class:"register-red-btn", style:"background-color: #aaa" %>
-              </div>
-            </div>
-        </div>
-      </div>
     </div>
   </div>
-<% end %>
+</div>

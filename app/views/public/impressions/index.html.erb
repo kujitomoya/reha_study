@@ -1,13 +1,13 @@
 <div><%= flash[:notice] %></div>
 
+<h1>勉強会感想一覧</h1>
+
 <div>
   <%= form_with url: search_path, method: :get do |f| %>
-    <%= f.text_field :word, placeholder: "検索したい分野を記入して下さい", value: params[:word], class: "from-box"  %>
+    <%= f.text_field :word, placeholder: "勉強会名・分野を記入して下さい", value: params[:word], class: "from-box"  %>
     <%= f.submit "検索", class: "" %>
   <% end %>
 </div>
-
-<h1>勉強会感想一覧</h1>
 
 <table class="table table-hover table-inverse">
   <thead>
@@ -17,6 +17,7 @@
       <th>講師名</th>
       <th>投稿者名</th>
       <th>コメント数</th>
+      <th>いいね数</th>
     </tr>
   </thead>
   <tbody>
@@ -35,6 +36,7 @@
           <% end %>
         </td>
         <td><%= link_to "#{impression.comments.count} コメント", impression_path(impression.id) %></td>
+        <td>♥<%= impression.favorites.count %> いいね</td>
       </tr>
     <% end %>
   </tbody>

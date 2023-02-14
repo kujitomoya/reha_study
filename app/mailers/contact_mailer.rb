@@ -1,10 +1,11 @@
 class ContactMailer < ApplicationMailer
-  def contact_mail(contact, user)
-    @contact = contact #ビューで使うために設定した
-    mail to: user.email, bcc: ENV["KEY"], subject: "お問い合わせについて【自動送信】"
-      #mail メールを送信します
-      #to: 送信先を指定します　=> お問合せをしたuserの登録メールアドレスに送付します
-      #bcc: 必要な場合のみccとbccを設定しましょう。ここには私のメールアドレスが入っています
-      #subject: メールのタイトルは○○にします
+  def contact_mail(contact)
+    @contact = contact
+    mail(
+      from: ENV['KEY'],  #送信元アドレス
+      to: contact.email,       #送信先アドレス
+      subject: 'お問い合わせを承りました',  #メールの件名
+      bcc: ENV['KEY']    #BCC送信先アドレス
+    )
   end
 end
