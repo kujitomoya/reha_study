@@ -1,15 +1,7 @@
-<h1><%= @customer.name %></h1>
-
-<% if @customer == current_customer %>
-  <%= link_to "プロフィール更新", edit_customer_path(current_customer.id),class: "btn btn-success" %>
-<% end %>
-
-<%= link_to "いいねをした投稿", favorites_customer_path(@customer) %>
-
 <div class="container px-5 px-sm-0">
   <div class="row">
    <div class="col-md-8 offset-md-1">
-    <h2>ユーザー投稿</h2>
+    <h2>いいね一覧</h2>
       <table class="table table-hover table-inverse">
         <thead>
           <tr>
@@ -21,7 +13,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @impressions.each do |impression| %>
+          <% @favorite_impressions.each do |impression| %>
             <tr>
               <td>
                 <%= link_to impression_path(impression.id) do %>
@@ -38,4 +30,3 @@
     </div>
   </div>
 </div>
-<%= paginate @impressions %>

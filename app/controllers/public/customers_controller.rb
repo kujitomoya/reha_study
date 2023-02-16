@@ -1,5 +1,5 @@
 class Public::CustomersController < ApplicationController
-  before_action :is_matching_login_customer, only: [:edit, :update]
+  before_action :is_matching_login_customer, only: [:edit, :update, :favorites]
 
   def show
     @customer = Customer.find(params[:id])
@@ -30,6 +30,12 @@ class Public::CustomersController < ApplicationController
     sign_out current_customer
     redirect_to root_path
   end
+  
+  def favorites
+    @customer = Customer.find(params[:id])
+    favorites= Favorite.where(customer_id: @customer.id).pluck(:impression_id)
+    @favorite_impressions = Impression.find(favorites)
+  end
 
   private
 
@@ -38,6 +44,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def is_matching_login_customer
+    @customer = Customer.find(params[:id])
     customer_id = params[:id].to_i
     login_customer_id = current_customer.id
     if(customer_id != login_customer_id)
