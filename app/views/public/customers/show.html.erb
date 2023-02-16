@@ -1,26 +1,25 @@
-<h1><%= @customer.name %></h1>
-
-<% if @customer == current_customer %>
-  <%= link_to "プロフィール更新", edit_customer_path(current_customer.id),class: "btn btn-success" %>
-<% end %>
-
-<%= link_to "いいねをした投稿", favorites_customer_path(@customer) %>
-
-<div class="container px-5 px-sm-0">
+<div class="container px-0 px-sm-0">
   <div class="row">
-   <div class="col-md-8 offset-md-1">
-    <h2>ユーザー投稿</h2>
-      <table class="table table-hover table-inverse">
-        <thead>
-          <tr>
-            <th>勉強会名</th>
-            <th>分野</th>
-            <th>講師名</th>
-            <th>コメント数</th>
-            <th>いいね数</th>
-          </tr>
-        </thead>
-        <tbody>
+    <div class="col-lg-2">
+      <h2><i class="fas fa-user"></i><%= @customer.name %></h2>
+      <% if @customer == current_customer %>
+        <%= link_to "プロフィール更新", edit_customer_path(current_customer.id),class: "btn btn-success mt-4" %>
+      <% end %>
+      <%= link_to "いいねをした投稿", favorites_customer_path(@customer),class: "btn btn-primary mt-4" %>
+    </div>
+    <div class="col-lg-10">
+      <h2><i class="fas fa-book"></i>ユーザー投稿</h2>
+        <table class="table table-hover table-inverse mt-4">
+          <thead>
+            <tr>
+              <th>勉強会名</th>
+              <th>分野</th>
+              <th>講師名</th>
+              <th>コメント数</th>
+              <th>いいね数</th>
+            </tr>
+          </thead>
+          <tbody>
           <% @impressions.each do |impression| %>
             <tr>
               <td>
@@ -29,12 +28,12 @@
                 <% end %>
               <td><%= impression.field.name %></td>
               <td><%= impression.name %></td>
-              <td><%= link_to "#{impression.comments.count} コメント", impression_path(impression.id) %></td>
-              <td>♥<%= impression.favorites.count %> いいね</td>
+              <td><%= link_to impression.comments.count, impression_path(impression.id) %></td>
+              <td>♥<%= impression.favorites.count %> </td>
             </tr>
           <% end %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
     </div>
   </div>
 </div>

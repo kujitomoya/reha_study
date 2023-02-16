@@ -1,44 +1,52 @@
 <div><%= flash[:notice] %></div>
 
-<h1>勉強会感想一覧</h1>
-
-<div>
-  <%= form_with url: search_path, method: :get do |f| %>
-    <%= f.text_field :word, placeholder: "勉強会名・分野を記入して下さい", value: params[:word], class: "from-box"  %>
-    <%= f.submit "検索", class: "" %>
-  <% end %>
+<div class="container px-0 px-sm-0">
+  <div class="row">
+    <div class="col-lg-5">
+　　　<h1>勉強会感想一覧</h1>
+    </div>
+    <div class="col-lg-7">
+      <%= form_with url: search_path, method: :get do |f| %>
+        <%= f.text_field :word, placeholder: "勉強会名・分野を記入して下さい", value: params[:word], class: "from-box"  %>
+        <%= f.submit "検索", class: "" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <table class="table table-hover table-inverse mt-4">
+        <thead>
+          <tr>
+            <th>勉強会名</th>
+            <th>分野</th>
+            <th>講師名</th>
+            <th>投稿者名</th>
+            <th>コメント数</th>
+            <th>いいね数</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @impressions.each do |impression| %>
+          <tr>
+            <td>
+              <%= link_to impression_path(impression.id) do %>
+                <%= impression.title %>
+              <% end %>
+            </td>
+            <td><%= impression.field.name %></td>
+            <td><%= impression.name %></td>
+            <td>
+              <%= link_to customer_path(impression.customer.id) do %>
+                <%= impression.customer.name %>
+              <% end %>
+            </td>
+            <td><%= link_to "#{impression.comments.count} コメント", impression_path(impression.id) %></td>
+            <td>♥<%= impression.favorites.count %> いいね</td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-
-<table class="table table-hover table-inverse">
-  <thead>
-    <tr>
-      <th>勉強会名</th>
-      <th>分野</th>
-      <th>講師名</th>
-      <th>投稿者名</th>
-      <th>コメント数</th>
-      <th>いいね数</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @impressions.each do |impression| %>
-      <tr>
-        <td>
-          <%= link_to impression_path(impression.id) do %>
-            <%= impression.title %>
-          <% end %>
-        </td>
-        <td><%= impression.field.name %></td>
-        <td><%= impression.name %></td>
-        <td>
-          <%= link_to customer_path(impression.customer.id) do %>
-            <%= impression.customer.name %>
-          <% end %>
-        </td>
-        <td><%= link_to "#{impression.comments.count} コメント", impression_path(impression.id) %></td>
-        <td>♥<%= impression.favorites.count %> いいね</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 <%= paginate @impressions %>

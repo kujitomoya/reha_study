@@ -7,18 +7,33 @@
   </ul>
 <% end %>
 
-<h1>勉強会参加感想の新規投稿</h1>
-  <%= form_with model: @impression do |f| %>
-    <h4>勉強会名</h4>
-      <%= f.text_field :title %>
-
-    <h4>講師名</h4>
-      <%= f.text_field :name %>
-
-    <h4>感想</h4>
-      <%= f.text_area :text %>
-
-    <h4>分野</h4>
-    <%= f.label :field_id, 'ジャンル' %><div><%= f.select :field_id, Field.all.map { |f| [f.name, f.id]}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %></div>
-    <%= f.submit '投稿' %>
-  <% end %>
+<div class="container">
+  <h2 class="my-3 ml-3">
+    勉強会参加感想の新規投稿
+  </h2>
+  <div class="row">
+    <div class="col-sm-10 mx-auto">
+      <%= form_with model: @impression do |f| %>
+        <div class="form-group">
+          <%= f.label :title, '勉強会名' %><br>
+          <%= f.text_field :title, autofocus: true, class:'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :name, '講師名' %><br>
+          <%= f.text_field :name, class:'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :text, '感想' %><br>
+          <%= f.text_area :text, class:'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :field_id, '分野' %><br>
+          <%= f.select :field_id, Field.all.map { |f| [f.name, f.id]}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+        </div>
+        <div class="d-flex justify-content-center mb-5">
+          <%= f.submit '投稿', class:'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
