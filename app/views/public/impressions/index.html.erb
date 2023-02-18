@@ -2,12 +2,10 @@
 
 <div class="container px-0 px-sm-0">
   <div class="row">
-    <div class="col-lg-5">
-　　　<h1>勉強会感想一覧</h1>
-    </div>
-    <div class="col-lg-7">
+    <div class="col-lg-10">
+　　　<h2>勉強会感想一覧</h2>
       <%= form_with url: search_path, method: :get do |f| %>
-        <%= f.text_field :word, placeholder: "勉強会名・分野を記入して下さい", value: params[:word], class: "from-box"  %>
+        <%= f.text_field :word, placeholder: "勉強会名・分野名を記入して下さい", value: params[:word], class: "from-box", size: "50" %>
         <%= f.submit "検索", class: "" %>
       <% end %>
     </div>
