@@ -1,77 +1,98 @@
 <div><%= flash[:notice] %></div>
 
-<div class="col-md-8 offset-md-1">
-  <h2>勉強会参加感想の投稿詳細</h2>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>勉強会名</th>
-          <th>分野</th>
-          <th>講師名</th>
-          <th>感想</th>
-          <th>投稿者名</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= @impression.title %></td>
-          <td><%= @impression.field.name %></td>
-          <td><%= @impression.name %></td>
-          <td><%=safe_join(@impression.text.split("\n"),tag(:br))%></td>
-          <td>
-            <%= link_to customer_path(@impression.customer.id) do %>
-              <%= @impression.customer.name %>
-            <% end %>
-          </td>
-          <% if customer_signed_in? && current_customer.id == @impression.customer_id %>
-          <td>
-            <%= link_to "更新", edit_impression_path(@impression.id),class: "btn btn-success" %>
-          </td>
-          <td>
-            <%= link_to "削除", impression_path(@impression.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
-          </td>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>勉強会参加感想の投稿詳細</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>勉強会名</th>
+              <th>分野</th>
+              <th>講師名</th>
+              <th>感想</th>
+              <th>投稿者名</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @impression.title %></td>
+              <td><%= @impression.field.name %></td>
+              <td><%= @impression.name %></td>
+              <td><%=safe_join(@impression.text.split("\n"),tag(:br))%></td>
+              <td>
+                <%= link_to customer_path(@impression.customer.id) do %>
+                  <%= @impression.customer.name %>
+                <% end %>
+              </td>
+              <% if customer_signed_in? && current_customer.id == @impression.customer_id %>
+              <td>
+                <%= link_to "更新", edit_impression_path(@impression.id),class: "btn btn-success" %>
+              </td>
+              <td>
+                <%= link_to "削除", impression_path(@impression.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
+              </td>
+              <% end %>
+              <% if admin_signed_in? %>
+              <td>
+                <%= link_to "削除", admin_impression_path(@impression.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
+              </td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <% if customer_signed_in? %>
+      <% if @impression.favorited_by?(current_customer) %>
+        <p><%= link_to impression_favorites_path(@impression), method: :delete do %>
+            ♥<%= @impression.favorites.count %> いいね
+           <% end %>
+        </p>
+      <% else %>
+        <p><%= link_to impression_favorites_path(@impression), method: :post do %>
+            ♡<%= @impression.favorites.count %> いいね
+           <% end %>
+        </p>
+      <% end %>
+      <% else %>
+          ♥<%= @impression.favorites.count %> いいね
+      <% end %>
+      <p>コメント件数：<%= @impression.comments.count %></p>
+    </div>
+    <div class="col-md-12">
+      <p>
+      <% @impression.comments.each do |comment| %>
+        <div>
+          <%= link_to customer_path(@impression.customer.id) do %>
+            <%= comment.customer.name %>
+          <% end %>
+        </div>
+        <div>
+          <%= comment.created_at.strftime('%Y/%m/%d') %>
+        </div>
+        <div>
+          <%= comment.comment %>
+        </div>
+          <% if comment.customer == current_customer %>
+            <%= link_to "削除", impression_comment_path(comment.impression, comment),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
           <% end %>
           <% if admin_signed_in? %>
-          <td>
-            <%= link_to "削除", admin_impression_path(@impression.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
-          </td>
+            <%= link_to "削除", admin_impression_comment_path(@impression.id, comment.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
           <% end %>
-        </tr>
-      </tbody>
-    </table>
-  <div>
-    <% if customer_signed_in? %>
-    <% if @impression.favorited_by?(current_customer) %>
-      <p><%= link_to impression_favorites_path(@impression), method: :delete do %>
-        ♥<%= @impression.favorites.count %> いいね
+        </br>
       <% end %>
       </p>
-    <% else %>
-      <p><%= link_to impression_favorites_path(@impression), method: :post do %>
-        ♡<%= @impression.favorites.count %> いいね
+    </div>
+    <div class="col-md-12">
+      <%= form_with model: [@impression, @comment] do |f| %>
+        <%= f.text_area :comment, placeholder:'コメントをここに入力して下さい', class:'form-control' %>
+        <%= f.submit '送信する', class:'btn btn-primary' %>
       <% end %>
-      </p>
-    <% end %>
-    <% else %>
-      ♥<%= @impression.favorites.count %> いいね
-    <% end %>
-  <div>
-   <p>コメント件数：<%= @impression.comments.count %></p>
-   <% @impression.comments.each do |comment| %>
-    <%= comment.customer.name %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-    <% if comment.customer == current_customer %>
-      <%= link_to "削除", impression_comment_path(comment.impression, comment),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
-    <% end %>
-    <% if admin_signed_in? %>
-      <%= link_to "削除", admin_impression_comment_path(@impression.id, comment.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
-    <% end %>
-   <% end %>
-  </div>
-  <div>
-   <%= form_with model: [@impression, @comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-   <% end %>
+    </div>
   </div>
 </div>

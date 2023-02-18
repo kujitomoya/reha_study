@@ -1,6 +1,6 @@
 <div><%= flash[:notice] %></div>
 
-<div class="container px-0 px-sm-0">
+<div class="container">
   <div class="row">
     <div class="col-lg-10">
 　　　<h2>勉強会感想一覧</h2>
@@ -10,9 +10,13 @@
       <% end %>
     </div>
   </div>
+    <p class="sort pt-4">
+      <%= link_to '新しい順', impressions_path(latest: "true") %>
+      |<%= link_to '古い順', impressions_path(old: "true") %>
+    </p>
   <div class="row">
     <div class="col-lg-12">
-      <table class="table table-hover table-inverse mt-4">
+      <table class="table table-hover table-inverse">
         <thead>
           <tr>
             <th>勉強会名</th>
@@ -47,4 +51,3 @@
     </div>
   </div>
 </div>
-<%= paginate @impressions %>

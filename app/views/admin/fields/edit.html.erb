@@ -1,8 +1,11 @@
 <div class="container">
-  <h4><span style="background-color: silver;">分野編集</span></h4>
- <%= form_with model: @field, url: admin_field_path(@field.id) do |f| %><br>
-<label for="inputGenre">分野名</label>
-  <%= f.text_field :name, autofocus: true, id:"inputGenre" %>
-  <%= f.submit "変更を保存する" ,class: "btn btn-success" %>
+  <h4>分野名編集</h4>
+  <%= form_with model: @field, url: admin_field_path(@field.id) do |f| %><br>
+    <div class="field_name mt-3">
+      <%= f.text_field :name, autofocus: true, placeholder:'分野名', class:'form-control', id:"inputField" %>
+    </div>
+    <div class="update mt-3">
+      <%= f.submit "変更を保存する" ,class: "btn btn-success" %>
+    </div>
   <% end %>
 </div>

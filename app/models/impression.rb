@@ -18,4 +18,7 @@ class Impression < ApplicationRecord
   validates :name, presence: true, length: { in: 1..20 }
   validates :text, presence: true, length: { in: 1..100 }
   validates :field_id, presence: true
+
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
 end

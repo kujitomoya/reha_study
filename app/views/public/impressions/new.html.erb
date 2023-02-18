@@ -16,15 +16,15 @@
       <%= form_with model: @impression do |f| %>
         <div class="form-group">
           <%= f.label :title, '勉強会名' %><br>
-          <%= f.text_field :title, autofocus: true, class:'form-control' %>
+          <%= f.text_field :title, autofocus: true, placeholder:'30文字以内で記入して下さい', class:'form-control' %>
         </div>
         <div class="form-group">
           <%= f.label :name, '講師名' %><br>
-          <%= f.text_field :name, class:'form-control' %>
+          <%= f.text_field :name, placeholder:'20文字以内で記入して下さい', class:'form-control' %>
         </div>
         <div class="form-group">
           <%= f.label :text, '感想' %><br>
-          <%= f.text_area :text, class:'form-control' %>
+          <%= f.text_area :text, placeholder:'100文字以内で記入して下さい', class:'form-control' %>
         </div>
         <div class="form-group">
           <%= f.label :field_id, '分野' %><br>
