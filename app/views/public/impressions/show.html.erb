@@ -1,52 +1,36 @@
 <div><%= flash[:notice] %></div>
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h2>勉強会参加感想の投稿詳細</h2>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>勉強会名</th>
-              <th>分野</th>
-              <th>講師名</th>
-              <th>感想</th>
-              <th>投稿者名</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><%= @impression.title %></td>
-              <td><%= @impression.field.name %></td>
-              <td><%= @impression.name %></td>
-              <td><%=safe_join(@impression.text.split("\n"),tag(:br))%></td>
-              <td>
-                <%= link_to customer_path(@impression.customer.id) do %>
-                  <%= @impression.customer.name %>
-                <% end %>
-              </td>
-              <% if customer_signed_in? && current_customer.id == @impression.customer_id %>
-              <td>
-                <%= link_to "更新", edit_impression_path(@impression.id),class: "btn btn-success" %>
-              </td>
-              <td>
-                <%= link_to "削除", impression_path(@impression.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
-              </td>
-              <% end %>
-              <% if admin_signed_in? %>
-              <td>
-                <%= link_to "削除", admin_impression_path(@impression.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
-              </td>
-              <% end %>
-            </tr>
-          </tbody>
-        </table>
+  <div class="row mt-5">
+    <h2>勉強会参加感想の投稿詳細</h2>
+    <div class="col-md-12 mt-2">
+      <div class="card border-dark mb-3" style="max-width: 60rem;">
+        <div class="card-header">
+          勉強会名：<%= @impression.title %>
+        </div>
+        <div class="card-body" text-dark>
+          分野名：<%= @impression.field.name %><br/>
+          講師名：<%= @impression.name %><br/>
+          感　想：<%=safe_join(@impression.text.split("\n"),tag(:br))%>
+        </div>
+      </div>
     </div>
+    <% if customer_signed_in? && current_customer.id == @impression.customer_id %>
+      <div class="ml-3">
+        <%= link_to "更新", edit_impression_path(@impression.id),class: "btn btn-success" %>
+      </div>
+      <div class="ml-3">
+        <%= link_to "削除", impression_path(@impression.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
+      </div>
+    <% end %>
+    <% if admin_signed_in? %>
+      <div class="ml-3">
+        <%= link_to "削除", admin_impression_path(@impression.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
+      </div>
+    <% end %>
   </div>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 mt-3">
       <% if customer_signed_in? %>
       <% if @impression.favorited_by?(current_customer) %>
         <p><%= link_to impression_favorites_path(@impression), method: :delete do %>
@@ -62,7 +46,6 @@
       <% else %>
           ♥<%= @impression.favorites.count %> いいね
       <% end %>
-      <p>コメント件数：<%= @impression.comments.count %></p>
     </div>
     <div class="col-md-12">
       <p>

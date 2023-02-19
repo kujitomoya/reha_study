@@ -4,7 +4,7 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @customer_impressions = @customer.impressions
-    @impressions = @customer.impressions.page(params[:page]).per(10)
+    @impressions = @customer.impressions.page(params[:page]).per(4)
     @favorites_count = 0
     @customer_impressions.each do |impression|
       @favorites_count += impression.favorites.count

@@ -17,3 +17,14 @@
  .bg-light-green {
    background-color: #dbf7db;
  }
+
+ .top-image {
+ background: url('/assets/study.jpg');
+ width: 100%;
+ height: 100vh;
+ background-size: cover;
+ }
+
+ .pagination {
+  justify-content: center;
+ }

@@ -1,41 +1,30 @@
-<div class="container px-0 px-sm-0">
+<div class="container">
   <div class="row">
-    <div class="col-lg-2">
+    <div class="col-lg-2 mt-5">
       <h2><i class="fas fa-user"></i><%= @customer.name %></h2>
       <% if @customer == current_customer %>
         <%= link_to "プロフィール更新", edit_customer_path(current_customer.id),class: "btn btn-success mt-4" %>
       <% end %>
       <%= link_to "いいねをした投稿", favorites_customer_path(@customer),class: "btn btn-primary mt-4" %>
-      <div class=mt-4>いいねをされた数：<%= @favorites_count %></div>
+      <div class="pt-3">いいねをされた数：<%= @favorites_count %></div>
     </div>
-    <div class="col-lg-10">
-      <h2>ユーザー投稿</h2>
-        <table class="table table-hover table-inverse mt-4">
-          <thead>
-            <tr>
-              <th>勉強会名</th>
-              <th>分野</th>
-              <th>講師名</th>
-              <th>コメント数</th>
-              <th>いいね数</th>
-            </tr>
-          </thead>
-          <tbody>
-          <% @impressions.each do |impression| %>
-            <tr>
-              <td>
-                <%= link_to impression_path(impression.id) do %>
-                  <%= impression.title %></td>
-                <% end %>
-              <td><%= impression.field.name %></td>
-              <td><%= impression.name %></td>
-              <td><%= link_to impression.comments.count, impression_path(impression.id) %></td>
-              <td>♥<%= impression.favorites.count %> </td>
-            </tr>
+    <div class="col-lg-10 mt-5 ">
+    <h2>ユーザー投稿</h2>
+    <% @impressions.each do |impression| %>
+      <div class="card border-dark mb-3 mt-4" style="max-width: 40rem;">
+        <div class="card-header">
+          勉強会名：<%= link_to impression_path(impression.id) do %>
+            <%= impression.title %>
           <% end %>
-          </tbody>
-        </table>
-        <%= paginate @impressions %>
+        </div>
+        <div class="card-body" text-dark>
+          分野名：<%= impression.field.name %><br/>
+          講師名：<%= impression.name %><br/>
+        </div>
+        <div><i class="far fa-comment-dots ml-3"></i><%= link_to "#{impression.comments.count}", impression_path(impression.id) %>♥<%= impression.favorites.count %></div>
+      </div>
+    <% end %>
     </div>
   </div>
+  <div class="pagination mt-4"><%= paginate @impressions %></div>
 </div>

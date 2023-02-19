@@ -3,11 +3,11 @@ class Public::ImpressionsController < ApplicationController
 
   def index
     if params[:latest]
-      @impressions = Impression.latest.page(params[:page]).per(10)
+      @impressions = Impression.latest.page(params[:page]).per(6)
     elsif params[:old]
-      @impressions = Impression.old.page(params[:page]).per(10)
+      @impressions = Impression.old.page(params[:page]).per(6)
     else
-      @impressions = Impression.all.page(params[:page]).per(10)
+      @impressions = Impression.all.page(params[:page]).per(6)
     end
   end
 

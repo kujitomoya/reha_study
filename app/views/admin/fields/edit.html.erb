@@ -1,5 +1,5 @@
-<div class="container">
-  <h4>分野名編集</h4>
+<div class="container mt-5">
+  <h2>分野名編集</h2>
   <%= form_with model: @field, url: admin_field_path(@field.id) do |f| %><br>
     <div class="field_name mt-3">
       <%= f.text_field :name, autofocus: true, placeholder:'分野名', class:'form-control', id:"inputField" %>
