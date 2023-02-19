@@ -3,7 +3,12 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    @customer_impressions = @customer.impressions
     @impressions = @customer.impressions.page(params[:page]).per(10)
+    @favorites_count = 0
+    @customer_impressions.each do |impression|
+      @favorites_count += impression.favorites.count
+    end
   end
 
   def edit
@@ -30,7 +35,7 @@ class Public::CustomersController < ApplicationController
     sign_out current_customer
     redirect_to root_path
   end
-  
+
   def favorites
     @customer = Customer.find(params[:id])
     favorites= Favorite.where(customer_id: @customer.id).pluck(:impression_id)

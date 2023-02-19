@@ -6,6 +6,7 @@
         <%= link_to "プロフィール更新", edit_customer_path(current_customer.id),class: "btn btn-success mt-4" %>
       <% end %>
       <%= link_to "いいねをした投稿", favorites_customer_path(@customer),class: "btn btn-primary mt-4" %>
+      <div class=mt-4>いいねをされた数：<%= @favorites_count %></div>
     </div>
     <div class="col-lg-10">
       <h2>ユーザー投稿</h2>
@@ -34,7 +35,7 @@
           <% end %>
           </tbody>
         </table>
+        <%= paginate @impressions %>
     </div>
   </div>
 </div>
-<%= paginate @impressions %>
