@@ -2,16 +2,22 @@
 
 <div class="container">
   <div class="row mt-5">
-    <h2>勉強会参加感想の投稿詳細</h2>
+    <h2>投稿詳細</h2>
     <div class="col-md-12 mt-2">
       <div class="card border-dark mb-3" style="max-width: 60rem;">
         <div class="card-header">
           勉強会名：<%= @impression.title %>
         </div>
         <div class="card-body" text-dark>
-          分野名：<%= @impression.field.name %><br/>
-          講師名：<%= @impression.name %><br/>
+          <div class="mb-3">
+            分野名：<%= @impression.field.name %>
+          </div>
+          <div class="mb-3">
+            講師名：<%= @impression.name %>
+          </div>
+          <div>
           感　想：<%=safe_join(@impression.text.split("\n"),tag(:br))%>
+          </div>
         </div>
       </div>
     </div>
@@ -50,31 +56,36 @@
     <div class="col-md-12">
       <p>
       <% @impression.comments.each do |comment| %>
-        <div>
+        <div class="mt-4">
           <%= link_to customer_path(@impression.customer.id) do %>
             <%= comment.customer.name %>
           <% end %>
         </div>
-        <div>
+        <div class="mt-1">
           <%= comment.created_at.strftime('%Y/%m/%d') %>
         </div>
-        <div>
+        <div class="mt-1">
           <%= comment.comment %>
         </div>
+        <div class="mt-2">
           <% if comment.customer == current_customer %>
             <%= link_to "削除", impression_comment_path(comment.impression, comment),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
           <% end %>
           <% if admin_signed_in? %>
             <%= link_to "削除", admin_impression_comment_path(@impression.id, comment.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
           <% end %>
-        </br>
+        </div>
       <% end %>
       </p>
     </div>
     <div class="col-md-12">
       <%= form_with model: [@impression, @comment] do |f| %>
+      <div class="mt-4">
         <%= f.text_area :comment, placeholder:'コメントをここに入力して下さい', class:'form-control' %>
+      </div>
+      <div class="mt-2">
         <%= f.submit '送信する', class:'btn btn-primary' %>
+      </div>
       <% end %>
     </div>
   </div>

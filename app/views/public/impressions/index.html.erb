@@ -24,10 +24,14 @@
           <% end %>
         </div>
         <div class="card-body" text-dark>
-          分野名：<%= impression.field.name %><br/>
-          投稿者：<%= link_to customer_path(impression.customer.id) do %>
-            <%= impression.customer.name %>
-          <% end %>
+          <div class="mb-3">
+            分野名：<%= impression.field.name %>
+          </div>
+          <div>
+            投稿者：<%= link_to customer_path(impression.customer.id) do %>
+              <%= impression.customer.name %>
+            <% end %>
+          </div>
         </div>
         <div><i class="far fa-comment-dots ml-3"></i><%= link_to "#{impression.comments.count}", impression_path(impression.id) %>♥<%= impression.favorites.count %></div>
       </div>
