@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row mt-5">
+    <h2>投稿詳細</h2>
+    <div class="col-md-12 mt-2">
+      <div class="card border-dark mb-3" style="max-width: 60rem;">
+        <div class="card-header">
+          勉強会名：<%= @impression.title %>
+        </div>
+        <div class="card-body" text-dark>
+          <div class="mb-3">
+            分野名：<%= @impression.field.name %>
+          </div>
+          <div class="mb-3">
+            講師名：<%= @impression.name %>
+          </div>
+          <div>
+          感　想：<%=safe_join(@impression.text.split("\n"),tag(:br))%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% if admin_signed_in? %>
+      <div class="ml-3">
+        <%= link_to "削除", admin_impression_path(@impression.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-md-12 mt-3">
+      ♥<%= @impression.favorites.count %> いいね
+    </div>
+    <div class="col-md-12">
+      <p>
+      <% @impression.comments.each do |comment| %>
+        <div class="mt-4">
+          <%= link_to admin_customer_path(@impression.customer.id) do %>
+            <%= comment.customer.name %>
+          <% end %>
+        </div>
+        <div class="mt-1">
+          <%= comment.created_at.strftime('%Y/%m/%d') %>
+        </div>
+        <div class="mt-1">
+          <%= comment.comment %>
+        </div>
+        <div class="mt-2">
+          <% if admin_signed_in? %>
+            <%= link_to "削除", admin_impression_comment_path(@impression.id, comment.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
+          <% end %>
+        </div>
+      <% end %>
+      </p>
+    </div>
+  </div>
+</div>

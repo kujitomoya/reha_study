@@ -29,11 +29,6 @@
         <%= link_to "削除", impression_path(@impression.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
       </div>
     <% end %>
-    <% if admin_signed_in? %>
-      <div class="ml-3">
-        <%= link_to "削除", admin_impression_path(@impression.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
-      </div>
-    <% end %>
   </div>
   <div class="row">
     <div class="col-md-12 mt-3">
@@ -70,9 +65,6 @@
         <div class="mt-2">
           <% if comment.customer == current_customer %>
             <%= link_to "削除", impression_comment_path(comment.impression, comment),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
-          <% end %>
-          <% if admin_signed_in? %>
-            <%= link_to "削除", admin_impression_comment_path(@impression.id, comment.id),class:"btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか?" %>
           <% end %>
         </div>
       <% end %>

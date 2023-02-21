@@ -19,13 +19,13 @@
     <div class="col-md-4">
       <div class="card border-dark mb-3" style="max-width: 40rem;">
         <div class="card-header">
-          勉強会名：<%= link_to impression_path(impression.id) do %>
+          勉強会名：<%= link_to admin_impression_path(impression.id) do %>
             <%= impression.title %>
           <% end %>
         </div>
         <div class="card-body" text-dark>
           分野名：<%= impression.field.name %><br/>
-          投稿者：<%= link_to customer_path(impression.customer.id) do %>
+          投稿者：<%= link_to admin_customer_path(impression.customer.id) do %>
             <%= impression.customer.name %>
           <% end %>
         </div>

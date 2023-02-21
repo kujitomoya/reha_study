@@ -18,15 +18,10 @@
           <td><%= f.text_field :name, autofocus: true, placeholder:'変更後の名前を入力', id:"inputName" %></td>
         </tr>
       </table>
-      <% if customer_signed_in? && current_customer.id == @impression.customer_id %>
+      <% if customer_signed_in? && current_customer.id == @customer.id %>
         <div class="mt-3">
           <%= f.submit "保存", class: "btn btn-success" %>
         </div>
-        <div class="mt-3">
-          <%= link_to "退会する",  unsubscribe_path,class: "btn btn-danger" %>
-        </div>
-      <% end %>
-      <% if admin_signed_in? %>
         <div class="mt-3">
           <%= link_to "退会する",  unsubscribe_path,class: "btn btn-danger" %>
         </div>

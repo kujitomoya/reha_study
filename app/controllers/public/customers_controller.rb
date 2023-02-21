@@ -39,7 +39,7 @@ class Public::CustomersController < ApplicationController
   def favorites
     @customer = Customer.find(params[:id])
     favorites= Favorite.where(customer_id: @customer.id).pluck(:impression_id)
-    @favorite_impressions = Impression.find(favorites)
+    @favorite_impressions = Impression.where(id: favorites).page(params[:page]).per(3)
   end
 
   private
