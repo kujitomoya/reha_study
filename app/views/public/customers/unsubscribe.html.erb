@@ -1,8 +1,13 @@
 <div class ="container text-center">
-  <font size="7">本当に退会しますか？</font><br>
-    <a>退会すると、会員登録情報や</a><br>
-    <a>これまでの投稿が閲覧できなくなります。</a><br>
-    <a>退会する場合は、「退会する」をクリックしてください。</a><br>
-  <%= link_to "退会しない", customer_path(@customer.id),class: "btn btn-primary" %>
-  <%= link_to "退会する", withdrawal_path(@customer.id),method: :patch, class: "btn btn-danger","data-confirm" => "本当に退会しますか?" %>
-</div>
+  <div class="row mt-5">
+    <div class="col-lg-12 mt-3">
+      <div><font size="7">本当に退会しますか？</font></div>
+      <div class="mt-3">退会すると、会員登録情報や</div>
+      <div class="mt-2">これまでの投稿が閲覧できなくなります。</div>
+      <div class="mt-2">退会する場合は、「退会する」をクリックしてください。</div>
+      <div class="mt-4"><%= link_to "退会しない", customer_path(@customer.id),class: "btn btn-primary" %>
+        <%= link_to "退会する", withdrawal_path(@customer.id),method: :patch, class: "btn btn-danger","data-confirm" => "本当に退会しますか?" %>
+      </div>
+    </div>
+  </div>
+<div>
