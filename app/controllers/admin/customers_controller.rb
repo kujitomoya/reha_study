@@ -6,13 +6,13 @@ class Admin::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @customer_impressions = @customer.impressions
-    @impressions = @customer.impressions.page(params[:page]).per(4)
+    @impressions = @customer.impressions.page(params[:page]).per(3)
     @favorites_count = 0
     @customer_impressions.each do |impression|
       @favorites_count += impression.favorites.count
     end
   end
-  
+
   def destroy
     @customer = Customer.find(params[:id])
     @customer.update(is_deleted: true)

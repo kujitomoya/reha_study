@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row mt-5">
+  <h2><i class="fas fa-crown"></i>いいねが多いユーザーRanking</h2>
+    <div class="col-lg-12 mt-4">
+      <% @customer_impression_favorite_ranks.each.with_index(1) do |impression, i| %>
+      <font size="5">
+        <ul style="list-style: none;">
+          <li><%= i %>位
+              :  <%= link_to customer_path(impression.id) do %>
+                   <%= impression.name %>さん
+                 <% end %>
+          </li>
+        </ul>
+      </font>
+      <% end %>
+    </div>
+  </div>
+</div

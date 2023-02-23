@@ -6,6 +6,12 @@ class Public::ImpressionsController < ApplicationController
       @impressions = Impression.latest.page(params[:page]).per(6)
     elsif params[:old]
       @impressions = Impression.old.page(params[:page]).per(6)
+    elsif params[:favorite]
+      impression_favorite_count = {}
+      Impression.all.each do |impression|
+      impression_favorite_count.store(impression, Favorite.where(impression_id: impression.id).pluck(:id).count)
+      @impressions = Kaminari.paginate_array(impression_favorite_count.sort_by { |_, v| v }.reverse.to_h.keys).page(params[:page]).per(6)
+      end
     else
       @impressions = Impression.all.page(params[:page]).per(6)
     end

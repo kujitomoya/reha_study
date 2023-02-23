@@ -10,10 +10,22 @@
       <% end %>
     </div>
   </div>
-    <p class="sort pt-4">
-      <%= link_to '新しい順', impressions_path(latest: "true") %>
-      |<%= link_to '古い順', impressions_path(old: "true") %>
-    </p>
+  <div class="row">
+    <div class="col-lg-6">
+      <p class="sort pt-4">
+        <%= link_to '新しい順', admin_impressions_path(latest: "true") %>
+        |<%= link_to '古い順', admin_impressions_path(old: "true") %>
+        |<%= link_to 'いいね順', admin_impressions_path(favorite: "true") %>
+      </p>
+    </div>
+    <div class="col-lg-6 pt-4">
+      <div class="text-right">
+        <i class="fas fa-crown"></i>
+        <%= link_to 'いいねが多いユーザーRanking', ranks_rank_path %>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
   <% @impressions.each do |impression| %>
     <div class="col-md-4">
@@ -24,10 +36,14 @@
           <% end %>
         </div>
         <div class="card-body" text-dark>
-          分野名：<%= impression.field.name %><br/>
-          投稿者：<%= link_to admin_customer_path(impression.customer.id) do %>
-            <%= impression.customer.name %>
-          <% end %>
+          <div class="mb-3">
+            分野名：<%= impression.field.name %>
+          </div>
+          <div>
+            投稿者：<%= link_to admin_customer_path(impression.customer.id) do %>
+              <%= impression.customer.name %>
+            <% end %>
+          </div>
         </div>
         <div><i class="far fa-comment-dots ml-3"></i><%= link_to "#{impression.comments.count}", impression_path(impression.id) %>♥<%= impression.favorites.count %></div>
       </div>

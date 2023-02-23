@@ -30,6 +30,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
         get :favorites
       end
     end
+    # いいねランキング画面
+    get 'ranks/rank'
     # 退会確認画面
     get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     # 論理削除用のルーティング

@@ -10,10 +10,21 @@
       <% end %>
     </div>
   </div>
-    <p class="sort pt-4">
-      <%= link_to '新しい順', impressions_path(latest: "true") %>
-      |<%= link_to '古い順', impressions_path(old: "true") %>
-    </p>
+  <div class="row">
+    <div class="col-lg-6">
+      <p class="sort pt-4">
+        <%= link_to '新しい順', impressions_path(latest: "true") %>
+        |<%= link_to '古い順', impressions_path(old: "true") %>
+        |<%= link_to 'いいね順', impressions_path(favorite: "true") %>
+      </p>
+    </div>
+    <div class="col-lg-6 pt-4">
+      <div class="text-right">
+        <i class="fas fa-crown"></i>
+        <%= link_to 'いいねが多いユーザーRanking', ranks_rank_path %>
+      </div>
+    </div>
+  </div>
   <div class="row">
   <% @impressions.each do |impression| %>
     <div class="col-md-4">
