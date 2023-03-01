@@ -24,12 +24,12 @@
 - サイトを通じてユーザー間でコミュニケーションを取りたい時
 
 ## 設計書
-ER図
-https://drive.google.com/file/d/1Y2jI-BW_nU_1n3pHXoqryxMMKfLbk6ic/view?usp=sharing
-テーブル定義書
-https://docs.google.com/spreadsheets/d/1vIaVaip03-XXZqy-Z65CGTaoy9wICOYsk9Twbu6QjwY/edit?usp=sharing
-詳細設計
-https://docs.google.com/spreadsheets/d/16g3kIoUSzogI2J-08bJjCnfFAI6q57TiHQl7zn1_AX8/edit?usp=sharing
+- ER図
+    https://drive.google.com/file/d/1Y2jI-BW_nU_1n3pHXoqryxMMKfLbk6ic/view?usp=sharing
+- テーブル定義書
+    https://docs.google.com/spreadsheets/d/1vIaVaip03-XXZqy-Z65CGTaoy9wICOYsk9Twbu6QjwY/edit?usp=sharing
+- 詳細設計
+    https://docs.google.com/spreadsheets/d/16g3kIoUSzogI2J-08bJjCnfFAI6q57TiHQl7zn1_AX8/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -39,12 +39,12 @@ https://docs.google.com/spreadsheets/d/16g3kIoUSzogI2J-08bJjCnfFAI6q57TiHQl7zn1_
 - IDE：Cloud9
 
 ## 使用素材
-写真素材
-- ぱくたそ
-https://www.pakutaso.com/
-フォント素材
-- Google Fonts
-https://fonts.google.com/
-ロゴ作成
-- DesignEvo
-https://www.designevo.com/
+- 写真素材
+  - ぱくたそ
+    https://www.pakutaso.com/
+- フォント素材
+  - Google Fonts
+    https://fonts.google.com/
+- ロゴ作成
+  - DesignEvo
+    https://www.designevo.com/
