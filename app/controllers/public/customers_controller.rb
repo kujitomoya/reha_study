@@ -43,7 +43,6 @@ class Public::CustomersController < ApplicationController
   end
 
   private
-
   def customer_params
     params.require(:customer).permit(:name)
   end

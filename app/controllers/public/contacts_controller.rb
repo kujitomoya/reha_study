@@ -13,7 +13,7 @@ class Public::ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
     if @contact.save
       ContactMailer.contact_mail(@contact).deliver
-      redirect_to complete_contacts_path, notice: 'お問い合わせ内容を送信しました'
+      redirect_to complete_contacts_path, notice: "お問い合わせ内容を送信しました"
     else
       render :new
     end
@@ -23,8 +23,7 @@ class Public::ContactsController < ApplicationController
   end
 
   private
-
-  def contact_params
-    params.require(:contact).permit(:name, :email, :content)
-  end
+    def contact_params
+      params.require(:contact).permit(:name, :email, :content)
+    end
 end

@@ -74,7 +74,6 @@ class Public::ImpressionsController < ApplicationController
   end
 
   private
-
   def impression_params
     params.require(:impression).permit(:name, :title, :text, :field_id)
   end

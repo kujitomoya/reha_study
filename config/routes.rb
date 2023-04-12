@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 # URL /customers/sign_in ...
 devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
-  sessions: 'public/sessions'
+  sessions: "public/sessions"
 }
 
 # 管理者用
@@ -24,18 +24,18 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
       resource :favorites, only:[:create, :destroy]
       resources :comments, only:[:create, :destroy]
     end
-    get 'search', to: 'impressions#search', as: 'search'
+    get "search", to: "impressions#search", as: "search"
     resources :customers, only:[:show, :edit, :update] do
       member do
         get :favorites
       end
     end
     # いいねランキング画面
-    get 'ranks/rank'
+    get "ranks/rank"
     # 退会確認画面
-    get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+    get "/customers/:id/unsubscribe" => "customers#unsubscribe", as: "unsubscribe"
     # 論理削除用のルーティング
-    patch '/customers/:id/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
+    patch "/customers/:id/withdrawal" => "customers#withdrawal", as: "withdrawal"
   end
 
   namespace :admin do
